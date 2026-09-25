@@ -4,28 +4,40 @@
   },
   "inbounds": [
     {
+      "tag": "IN-Hysteria2",
       "listen": "0.0.0.0",
       "port": 20000,
       "protocol": "hysteria",
       "settings": {
-        "version": 2
+        "version": 2,
+        "users": [
+          {
+            "auth": "de04add9-5c68-8bab-950c-08cd5320df18",
+            "level": 0,
+            "email": "saeed@dormhost.app"
+          }
+        ]
       },
       "streamSettings": {
         "network": "hysteria",
-        "hysteriaSettings": {
-          "version": 2,
-          "auth": "de04add9-5c68-8bab-950c-08cd5320df18",
-          "udpIdleTimeout": 60
-        },
         "security": "tls",
         "tlsSettings": {
+          "alpn": [ "h3" ],
           "certificates": [
             {
               "certificateFile": "/xray/cert/cert.pem",
               "keyFile": "/xray/cert/key.pem"
             }
           ]
+        },
+        "hysteriaSettings": {
+          "version": 2,
+          "udpIdleTimeout": 60
         }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [ "http", "tls", "quic" ]
       }
     }
   ],
