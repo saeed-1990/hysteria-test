@@ -1,8 +1,12 @@
 FROM alpine:latest
 
-RUN apk update && apk add --no-cache curl unzip
+RUN apk update && apk add --no-cache curl unzip openssl
 
 RUN mkdir -m 777 /xray
+RUN mkdir -p /xray/cert
+
+# تولید گواهی خودامضا
+RUN openssl req -x509 -nodes -newkey rsa:2048 -keyout /xray/cert/key.pem -out /xray/cert/cert.pem -days 3650 -subj "/CN=localhost"
 
 RUN ARCH=$(uname -m); \
     if [ "$ARCH" = "x86_64" ]; then ARCH="64"; \
