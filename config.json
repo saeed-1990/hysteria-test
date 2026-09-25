@@ -16,6 +16,15 @@
           "version": 2,
           "auth": "de04add9-5c68-8bab-950c-08cd5320df18",
           "udpIdleTimeout": 60
+        },
+        "security": "tls",
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "/xray/cert/cert.pem",
+              "keyFile": "/xray/cert/key.pem"
+            }
+          ]
         }
       }
     }
